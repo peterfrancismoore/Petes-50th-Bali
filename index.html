@@ -826,6 +826,8 @@ footer.tiny{text-align:center;color:var(--muted);font-size:12px;padding:10px 20p
 // Pete's WhatsApp number in international format, digits only (e.g. "6591234567").
 // Leave "" and WhatsApp will ask guests which chat to send their RSVP to.
 const WHATSAPP_NUMBER = "6597838096";
+// Google Sheets web-app URL (from Apps Script → Deploy → Web app). When set, RSVPs go to Pete's sheet.
+const SHEET_URL = "";
 // Link to the shared photo album or WhatsApp photo group. Leave "" for "coming soon".
 const PHOTO_LINK = "";
 const PHOTO_LINK_LABEL = "Open the photo album";
@@ -1021,6 +1023,13 @@ $("#sat-wa").addEventListener("click",e=>{
   e.currentTarget.href=waURL(satText()); e.currentTarget.target="_blank"; e.currentTarget.rel="noopener";
   setStatus("#sat-status","Opening WhatsApp… just tap send! 🌴","ok");
 });
+function lsGet(k){ try{ return JSON.parse(localStorage.getItem(k)||"null"); }catch{ return null; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch{} }
+async function sendToSheet(payload){
+  await fetch(SHEET_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
+}
+function evTitles(ids){ return (ids||[]).map(id=>(EVENT.events.find(e=>e.id===id)||{}).title).filter(Boolean); }
+function actLabels(ids){ return (ids||[]).map(a=>{ const x=ACTS.find(z=>z[0]===a); return x?x[2]:a; }); }
 function goStatic(){
   STATIC=true;
   $("#rsvp-noaccess").innerHTML="Fill in your RSVP, then tap <b>Send RSVP via WhatsApp</b>. WhatsApp opens with your answers ready to send to Pete.";
@@ -1031,6 +1040,12 @@ function goStatic(){
   if(PHOTO_LINK){ const b=$("#p-static-btn"); b.href=PHOTO_LINK; b.textContent=PHOTO_LINK_LABEL; b.classList.remove("hidden");
     $("#p-static-text").textContent="Add your shots to our shared album so everyone can relive the weekend."; }
   $("#q-photos").textContent="Share your shots";
+  if(SHEET_URL){
+    ["#rsvp-noaccess","#sat-noaccess","#r-wa","#sat-wa","#r-copy","#sat-copy"].forEach(q=>$(q).classList.add("hidden"));
+    $("#r-save").classList.remove("hidden"); $("#sat-save").classList.remove("hidden");
+    const r=lsGet("p50-rsvp"); if(r){ fillForm(r); $("#r-save").textContent="Update RSVP"; $("#cta-rsvp").textContent="✓ RSVP sent: tap to update"; }
+    const sa=lsGet("p50-sat"); if(sa){ fillSat(sa); $("#sat-save").textContent="Update my choices"; }
+  }
 }
 function noSatAccess(){ $("#sat-noaccess").classList.remove("hidden"); $("#sat-save").classList.add("hidden"); $("#sat-copy").classList.remove("hidden"); }
 $("#sat-copy").onclick=async()=>{
@@ -1043,6 +1058,16 @@ $("#sat-form").addEventListener("submit",async e=>{
   const name=$("#sat-name").value.trim();
   if(!satSel.size){ setStatus("#sat-status","Pick at least one option.","err"); return; }
   if(!name){ setStatus("#sat-status","Please add your name.","err"); return; }
+  if(STATIC && SHEET_URL){
+    const btn=$("#sat-save"); btn.disabled=true; setStatus("#sat-status","Sending…");
+    const sa={name, activities:[...satSel], activityOther:satSel.has("other")?$("#sat-other").value.trim():""};
+    try{ await sendToSheet({type:"saturday", name, activities:actLabels(sa.activities), activityOther:sa.activityOther});
+      lsSet("p50-sat",sa); btn.textContent="Update my choices";
+      setStatus("#sat-status","Got it, thanks! We'll let you know if a group activity comes together 🌴","ok");
+    }catch{ setStatus("#sat-status","Couldn't send just now. Check your connection and try again.","err"); }
+    finally{ btn.disabled=false; }
+    return;
+  }
   if(!DB||!UID){ noSatAccess(); setStatus("#sat-status","Saving isn't available here. Use Copy my choices instead.","err"); return; }
   const btn=$("#sat-save"); btn.disabled=true; setStatus("#sat-status","Sending…");
   try{
@@ -1068,6 +1093,15 @@ $("#rsvp-form").addEventListener("submit",async e=>{
   const d=readForm();
   if(!d.name){setStatus("#r-status","Please add your name.","err");return;}
   if(!d.attending){setStatus("#r-status","Let us know if you can make it.","err");return;}
+  if(STATIC && SHEET_URL){
+    const btn=$("#r-save"); btn.disabled=true; setStatus("#r-status","Sending…");
+    try{ await sendToSheet({type:"rsvp", ...d, events:evTitles(d.events)});
+      lsSet("p50-rsvp",d); btn.textContent="Update RSVP"; $("#cta-rsvp").textContent="✓ RSVP sent: tap to update";
+      setStatus("#r-status", d.attending==="no"?"Thanks for letting us know. You'll be missed! 💛":"You're on the list! Terima kasih 🌺","ok");
+    }catch{ setStatus("#r-status","Couldn't send just now. Check your connection and try again.","err"); }
+    finally{ btn.disabled=false; }
+    return;
+  }
   if(!DB||!UID){ noRsvpAccess(); setStatus("#r-status","Saving isn't available here. Use Copy my RSVP instead.","err"); return; }
   const btn=$("#r-save"); btn.disabled=true; setStatus("#r-status","Sending…");
   try{
