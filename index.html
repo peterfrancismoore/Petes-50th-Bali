@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pete's 50th · Bali</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#f7efe3; --sand2:#efe2cf; --ink:#1d2b2a; --muted:#5f6d6a;
+  --lagoon:#0f5c5a; --lagoon2:#13807c; --coral:#e2674b; --gold:#c99a3b;
+  --card:#fffaf2; --line:#e3d4bd;
+  --safe-b:env(safe-area-inset-bottom,0px); --safe-t:env(safe-area-inset-top,0px);
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--sand);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{padding-top:var(--safe-t)}
+h1,h2,h3{font-family:"Fraunces",Georgia,serif;margin:0;letter-spacing:-.01em}
+a{color:var(--lagoon2)}
+.app{max-width:520px;margin:0 auto;min-height:100vh;padding-bottom:calc(24px + var(--safe-b));position:relative}
+body{padding-top:0}
+/* poster landing */
+.poster{position:relative;margin:0;background:#2a1a10}
+.poster img{display:block;width:100%;height:auto}
+.poster .fadeb{display:none}
+.cta{position:relative;z-index:2;margin:-8px 20px 0;background:linear-gradient(135deg,#2a1a10,#4a2c14);color:#f7e9d2;border-radius:22px;padding:18px;box-shadow:0 10px 26px rgba(60,30,10,.25);border:1px solid rgba(255,214,140,.35)}
+.cta .eyebrow{color:#e8c98a}
+.cta .countdown{margin-top:12px}
+.cta .countdown div{background:rgba(255,214,140,.1);border-color:rgba(255,214,140,.3)}
+.cta .countdown b{color:#ffd98f}
+.cta .btn{margin-top:14px}
+.quick.after{margin-top:16px}
+.view{display:none;animation:fade .25s ease}
+.view.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.pad{padding:20px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;margin:6px 0 14px}
+.sec-h h2{font-size:28px}
+
+/* hero */
+.hero{position:relative;min-height:440px;color:#fff;overflow:hidden;border-radius:0 0 28px 28px;
+  background:linear-gradient(180deg,#f3a35f 0%,#e2674b 38%,#8c3b4f 66%,#0f3b44 100%)}
+.hero svg.scene{position:absolute;inset:auto 0 0 0;width:100%;height:auto}
+.hero .inner{position:relative;padding:34px 22px 0}
+.hero .eyebrow{color:rgba(255,255,255,.85)}
+.hero h1{font-size:64px;line-height:.92;margin-top:10px;font-weight:700}
+.hero h1 em{font-style:italic;font-weight:400;color:#ffe2b8}
+.hero p.sub{font-size:16px;opacity:.92;margin:12px 0 0;max-width:30ch}
+.countdown{display:flex;gap:10px;margin-top:22px}
+.countdown div{background:rgba(255,255,255,.14);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:10px 12px;min-width:64px;text-align:center}
+.countdown b{display:block;font-family:Fraunces,serif;font-size:26px}
+.countdown span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:-34px;padding:0 20px;position:relative;z-index:2}
+.qbtn{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;text-align:left;font:inherit;color:inherit;cursor:pointer;box-shadow:0 6px 18px rgba(60,40,20,.08)}
+.qbtn .ic{font-size:22px}
+.qbtn b{display:block;margin-top:6px;font-size:15px}
+.qbtn small{color:var(--muted);font-size:12.5px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:14px}
+.note{background:#fff3df;border:1px dashed var(--gold);border-radius:14px;padding:12px 14px;font-size:13.5px;color:#6b4e16}
+
+/* itinerary */
+.event{position:relative;padding-left:22px;margin-bottom:16px}
+.event:before{content:"";position:absolute;left:6px;top:8px;bottom:-22px;width:2px;background:var(--line)}
+.event:last-child:before{display:none}
+.event .dot{position:absolute;left:0;top:6px;width:14px;height:14px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 4px var(--sand)}
+.event .card{margin:0}
+.tagrow{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.tag{font-size:12px;background:var(--sand2);border-radius:99px;padding:5px 10px;color:#4b3f30}
+.tag.dc{background:#e2f0ec;color:var(--lagoon)}
+.event h3{font-size:22px;margin-top:4px}
+.when{color:var(--coral);font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.event p{margin:6px 0 0;color:#3b4746;line-height:1.5;font-size:14.5px}
+.btnrow{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:12px;padding:10px 14px;font:600 14px "DM Sans",sans-serif;cursor:pointer;text-decoration:none}
+.btn.pri{background:var(--lagoon);color:#fff}
+.btn.sec{background:var(--sand2);color:var(--ink)}
+.btn.coral{background:var(--coral);color:#fff}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.block{width:100%;justify-content:center;padding:14px}
+
+/* map */
+.mapart{border-radius:20px;overflow:hidden;border:1px solid var(--line);background:#cfe7e3;margin-bottom:14px}
+.mapart svg{display:block;width:100%;height:auto}
+.venue{display:flex;gap:12px;align-items:flex-start}
+.venue .num{flex:none;width:32px;height:32px;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;font-weight:700}
+.venue h3{font-size:18px}
+.venue p{margin:4px 0 0;font-size:14px;color:var(--muted)}
+
+/* forms */
+label.f{display:block;font-weight:700;font-size:14px;margin:16px 0 6px}
+input[type=text],input[type=date],input[type=number],textarea,select{width:100%;font:16px "DM Sans",sans-serif;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+textarea{min-height:80px;resize:vertical}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.seg button,.chip{font:600 14px "DM Sans",sans-serif;padding:12px 8px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+.seg button.on{background:var(--lagoon);color:#fff;border-color:var(--lagoon)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:9px 12px;border-radius:99px;font-weight:500}
+.chip.on{background:var(--coral);border-color:var(--coral);color:#fff}
+.status{margin-top:12px;font-size:14px;min-height:20px}
+.status.ok{color:var(--lagoon2)} .status.err{color:#b23a22}
+.hidden{display:none!important}
+
+/* admin */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.stat{background:var(--lagoon);color:#fff;border-radius:16px;padding:12px;text-align:center}
+.stat b{font-family:Fraunces,serif;font-size:28px;display:block}
+.stat span{font-size:11.5px;opacity:.85;text-transform:uppercase;letter-spacing:.08em}
+.rlist{list-style:none;padding:0;margin:0}
+.rlist li{border-top:1px solid var(--line);padding:10px 0;font-size:14px}
+.rlist li b{font-size:15px}
+.rlist .meta{color:var(--muted);font-size:13px;margin-top:2px}
+.pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:2px}
+.pill.yes{background:#d9efe8;color:var(--lagoon)} .pill.no{background:#f6ddd6;color:#a2412a} .pill.maybe{background:#f5ead2;color:#7a5a17}
+
+/* gallery */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;border-radius:16px;overflow:hidden}
+.grid button{border:0;padding:0;aspect-ratio:1;background:var(--sand2);cursor:pointer;overflow:hidden}
+.grid img{width:100%;height:100%;object-fit:cover;display:block}
+.upl{display:flex;align-items:center;justify-content:center;gap:8px;border:2px dashed var(--coral);border-radius:16px;padding:18px;color:var(--coral);font-weight:700;cursor:pointer;margin-bottom:14px;background:#fff6f1}
+.upl input{display:none}
+.empty{text-align:center;color:var(--muted);padding:40px 10px;font-size:14.5px}
+.lb{position:fixed;inset:0;background:rgba(10,20,20,.94);z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;padding-bottom:calc(20px + var(--safe-b))}
+.lb img{max-width:100%;max-height:72vh;border-radius:10px}
+.lb .cap{color:#fff;margin-top:12px;text-align:center;font-size:14.5px}
+.lb .cap small{display:block;opacity:.7;margin-top:4px}
+.lb .x{position:absolute;top:calc(14px + var(--safe-t));right:14px;background:rgba(255,255,255,.15);color:#fff;border:0;width:40px;height:40px;border-radius:50%;font-size:20px;cursor:pointer}
+.lb .btnrow{justify-content:center}
+
+/* tips */
+details.tip{background:var(--card);border:1px solid var(--line);border-radius:18px;margin-bottom:10px;overflow:hidden}
+details.tip summary{list-style:none;padding:16px 18px;cursor:pointer;display:flex;align-items:center;gap:12px;font-weight:700;font-size:16px}
+details.tip summary::-webkit-details-marker{display:none}
+details.tip summary .ic{font-size:22px}
+details.tip summary:after{content:"+";margin-left:auto;font-size:22px;color:var(--muted)}
+details.tip[open] summary:after{content:"–"}
+details.tip .body{padding:0 18px 16px;font-size:14.5px;line-height:1.55;color:#3b4746}
+details.tip ul{padding-left:18px;margin:6px 0}
+details.tip li{margin-bottom:6px}
+.phr{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:14px}
+.phr b{color:var(--lagoon)}
+
+
+/* Studio 50-Moore page */
+#v-studio{background:#05070f;color:#e9eef8;min-height:100vh;margin:0 -0px;padding-bottom:30px;
+  background-image:radial-gradient(circle at 20% 30%,rgba(255,255,255,.08) 0 1px,transparent 2px),radial-gradient(circle at 70% 60%,rgba(160,190,255,.08) 0 1px,transparent 2px);background-size:22px 22px,30px 30px}
+#v-studio .logo{display:block;width:100%;height:auto;margin-top:calc(64px + var(--safe-t))}
+#v-studio .wrap2{padding:0 20px}
+.s-title{font-family:Fraunces,serif;font-size:38px;line-height:1.02;margin:18px 0 6px;color:#fff;
+  background:linear-gradient(180deg,#ffffff 0%,#c8d3e6 45%,#8fa3c4 55%,#eef3fb 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}
+.s-sub{color:#aebbd4;font-size:15px;margin:0 0 18px}
+.s-card{background:linear-gradient(160deg,rgba(25,36,74,.9),rgba(10,14,32,.95));border:1px solid rgba(190,205,235,.28);border-radius:20px;padding:18px;margin-bottom:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.s-card h3{font-size:19px;color:#fff;margin-bottom:8px}
+.s-card p,.s-card li{color:#cdd6e8;font-size:14.5px;line-height:1.55}
+.s-card ul{padding-left:18px;margin:6px 0}
+.s-kv{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:15px}
+.s-kv b{color:#9fb4dc;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding-top:3px}
+.s-kv span{color:#fff}
+.swatches{display:flex;gap:10px;margin:12px 0 4px}
+.sw{flex:1;height:56px;border-radius:14px;border:1px solid rgba(255,255,255,.25);display:flex;align-items:flex-end;padding:6px 8px;font-size:11px;font-weight:700;letter-spacing:.06em}
+.sw.navy{background:#0b1a4a;color:#c9d5f5}
+.sw.royal{background:linear-gradient(135deg,#1d4fd8,#3b7bff);color:#fff}
+.sw.silver{background:linear-gradient(135deg,#f4f6fa,#a9b3c2 50%,#eef1f6);color:#1d2433}
+.sw.glitter{background:radial-gradient(circle,#fff 0 1px,transparent 1.5px) 0 0/7px 7px,linear-gradient(135deg,#8a96aa,#e6ebf3);color:#1d2433}
+#v-studio .btn.disco{background:linear-gradient(135deg,#e9eef7,#9aa8bf);color:#0b1230}
+#v-studio .btn.ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.qbtn.disco{grid-column:1/-1;background:linear-gradient(135deg,#0b1230,#1d2c66);color:#fff;border-color:#2c3c7a;display:flex;align-items:center;gap:14px}
+.qbtn.disco small{color:#b8c4e0}
+.qbtn.disco img{width:58px;height:58px;border-radius:12px;object-fit:cover;flex:none}
+
+
+/* Sundays page */
+#v-sundays{padding-top:calc(64px + var(--safe-t))}
+.cove{display:block;width:100%;height:auto}
+.b-title{font-family:Fraunces,serif;font-size:36px;line-height:1.03;margin:18px 0 6px;color:var(--lagoon)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.fact{background:#e2f0ec;border-radius:16px;padding:12px 14px}
+.fact b{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--lagoon2)}
+.fact span{font-size:15px;font-weight:600;color:var(--ink)}
+.timeline2{list-style:none;padding:0;margin:0}
+.timeline2 li{display:flex;gap:12px;padding:9px 0;border-top:1px solid var(--line);font-size:14.5px}
+.timeline2 li:first-child{border-top:0}
+.timeline2 time{flex:none;width:84px;font-weight:700;color:var(--coral)}
+.small{font-size:12.5px;color:var(--muted)}
+
+
+/* Welcome night */
+.qbtn.welcome{grid-column:1/-1;background:linear-gradient(135deg,#f3a35f,#e2674b 55%,#8c3b4f);color:#fff;border-color:#d9714f;display:flex;align-items:center;gap:14px}
+.qbtn.welcome small{color:#ffe7d2}
+.qbtn.welcome .wi{width:58px;height:58px;border-radius:12px;flex:none;display:grid;place-items:center;font-size:30px;background:rgba(255,255,255,.18)}
+#v-welcome{padding-top:calc(64px + var(--safe-t))}
+.w-hero{display:block;width:100%;height:auto}
+.w-title{font-family:Fraunces,serif;font-size:38px;line-height:1.03;margin:16px 0 6px;color:#b14a30}
+
+.qbtn.sunday{grid-column:1/-1;background:linear-gradient(135deg,#0f5c5a,#1e8fa0 60%,#3cc4c4);color:#fff;border-color:#13807c;display:flex;align-items:center;gap:14px}
+.qbtn.sunday small{color:#d6f3ef}
+.qbtn.sunday img{width:58px;height:58px;border-radius:12px;object-fit:cover;flex:none}
+/* ocean background */
+html{background:#3a3550} body{background:transparent!important}
+.bgsea{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(40,20,50,.25),rgba(10,30,45,.15) 45%,rgba(10,30,45,.35)),#3a3550 url("bg.jpg") 70% center/cover no-repeat}
+.view > .pad > .eyebrow,.view.pad > .eyebrow,.sec-h .eyebrow{color:#fff;text-shadow:0 1px 3px rgba(20,10,30,.45)}
+.sec-h h2,.view.pad > .sec-h h2{color:#fff;text-shadow:0 2px 12px rgba(20,10,30,.7),0 1px 2px rgba(20,10,30,.6)}
+.b-title,.w-title{color:#fff!important;text-shadow:0 2px 12px rgba(20,10,30,.75),0 1px 2px rgba(20,10,30,.6)}
+.view > .pad > p,.empty{background:rgba(25,15,40,.5);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-radius:16px;padding:14px 16px!important}
+.view > .pad > p{color:#fff!important;text-shadow:0 1px 4px rgba(20,10,30,.55)}
+.view > .pad > p a{color:#fff}
+footer.tiny{color:#e6fbf8!important;text-shadow:0 1px 3px rgba(20,10,30,.5)}
+.empty{color:#fff;text-shadow:0 1px 4px rgba(20,10,30,.5)}
+.status{text-shadow:none}
+#v-photos .status{color:#fff}
+.fact{background:rgba(255,250,242,.92)}
+/* Saturday day */
+.qbtn.sat{grid-column:1/-1;background:linear-gradient(135deg,#f6c453,#f39a3d 55%,#e2674b);color:#fff;border-color:#e89a3d;display:flex;align-items:center;gap:14px}
+.qbtn.sat small{color:#fff3df}
+.qbtn.sat .wi{width:58px;height:58px;border-radius:12px;flex:none;display:grid;place-items:center;font-size:30px;background:rgba(255,255,255,.22)}
+.sat-hero{margin-top:calc(64px + var(--safe-t));padding:28px 20px 24px;background:linear-gradient(135deg,rgba(246,196,83,.95),rgba(243,154,61,.95) 55%,rgba(226,103,75,.95));color:#fff}
+.sat-hero .emo{font-size:40px;letter-spacing:6px}
+.sat-hero h1{font-size:34px;line-height:1.05;margin-top:10px;color:#fff;text-shadow:0 2px 8px rgba(120,50,10,.35)}
+.sat-hero p{margin:10px 0 0;font-size:15px;line-height:1.5;color:#fff8ec}
+.actgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.act{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;padding:14px;border-radius:16px;border:2px solid var(--line);background:#fff;font:600 15px "DM Sans",sans-serif;color:var(--ink);cursor:pointer}
+.act .ai{font-size:26px}
+.act small{font-weight:400;font-size:12.5px;color:var(--muted)}
+.act.on{border-color:var(--coral);background:#fff1ea;box-shadow:0 0 0 3px rgba(226,103,75,.15)}
+.act.on:after{content:"✓ Selected";font-size:11.5px;font-weight:700;color:var(--coral)}
+/* things to do */
+.todo-list{display:grid;gap:12px}
+.todo{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:14px;border-radius:20px;border:1px solid var(--line);background:var(--card);font:inherit;color:var(--ink);cursor:pointer;box-shadow:0 6px 18px rgba(20,10,30,.12)}
+.todo .ti{width:60px;height:60px;border-radius:14px;flex:none;display:grid;place-items:center;font-size:30px;background:var(--sand2);overflow:hidden}
+.todo .ti img{width:100%;height:100%;object-fit:cover}
+.todo b{font-size:17px;display:block}
+.todo small{color:var(--muted);font-size:13px}
+.todo:after{content:"›";margin-left:auto;font-size:28px;color:var(--muted)}
+.backlink{display:inline-flex;align-items:center;gap:6px;margin-bottom:12px;padding:8px 14px;border-radius:12px;background:rgba(255,250,242,.92);color:var(--ink);font-weight:700;font-size:14px;text-decoration:none}
+.spa-img{display:block;width:100%;height:auto;border-radius:20px;margin-bottom:14px;box-shadow:0 10px 26px rgba(20,10,30,.25)}
+.menu-list{list-style:none;padding:0;margin:0}
+.menu-list li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--line);font-size:14.5px}
+.menu-list li:first-child{border-top:0}
+.menu-list li span:last-child{font-weight:700;color:var(--lagoon);white-space:nowrap}
+.course{margin-bottom:14px}
+.course .tag{margin:2px 4px 2px 0}
+/* home buttons */
+.homebtn{margin-left:auto;display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:12px;background:rgba(30,18,10,.55);border:1px solid rgba(255,214,140,.55);color:#ffd98f;font-weight:700;font-size:14px;text-decoration:none}
+.backhome{display:flex;justify-content:center;padding:6px 20px 4px}
+.is-home .homebtn,.is-home .backhome{display:none}
+/* top bar + dropdown menu */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:45;padding-top:var(--safe-t);transition:background .25s,box-shadow .25s}
+.topbar .wrap{max-width:520px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 14px}
+.topbar.solid{background:rgba(35,22,14,.92);backdrop-filter:blur(10px);box-shadow:0 2px 14px rgba(0,0,0,.25)}
+.menubtn{width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,214,140,.55);background:rgba(30,18,10,.55);backdrop-filter:blur(6px);display:grid;place-items:center;cursor:pointer;padding:0}
+.menubtn span,.menubtn span:before,.menubtn span:after{display:block;width:20px;height:2px;background:#ffd98f;border-radius:2px;position:relative;transition:transform .2s,background .2s}
+.menubtn span:before,.menubtn span:after{content:"";position:absolute;left:0}
+.menubtn span:before{top:-6px} .menubtn span:after{top:6px}
+.menubtn[aria-expanded=true] span{background:transparent}
+.menubtn[aria-expanded=true] span:before{transform:translateY(6px) rotate(45deg)}
+.menubtn[aria-expanded=true] span:after{transform:translateY(-6px) rotate(-45deg)}
+.brand{font-family:Fraunces,serif;font-weight:700;color:#ffd98f;font-size:19px;letter-spacing:.01em;text-shadow:0 1px 6px rgba(0,0,0,.5);opacity:0;transition:opacity .25s}
+.topbar.solid .brand{opacity:1}
+.dd{position:absolute;left:14px;top:calc(var(--safe-t) + 62px);width:min(290px,calc(100vw - 28px));background:#2a1a10;border:1px solid rgba(255,214,140,.35);border-radius:18px;padding:8px;box-shadow:0 18px 40px rgba(0,0,0,.35);transform-origin:top left;transform:scale(.96) translateY(-6px);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s}
+.dd.open{opacity:1;transform:none;pointer-events:auto}
+.dd a{display:flex;align-items:center;gap:12px;padding:12px 12px;border-radius:12px;color:#f7e9d2;text-decoration:none;font-weight:600;font-size:15.5px}
+.dd a .ic{width:26px;text-align:center;font-size:19px}
+.dd a small{display:block;font-weight:400;font-size:12px;color:#c9b393}
+.dd a.on{background:rgba(255,214,140,.14);color:#ffd98f}
+.dd a:active{background:rgba(255,214,140,.2)}
+.scrim{position:fixed;inset:0;z-index:44;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .18s}
+.scrim.open{opacity:1;pointer-events:auto}
+.view.pad{padding-top:calc(78px + var(--safe-t))}
+.toast{position:fixed;left:50%;bottom:calc(28px + var(--safe-b));transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:99px;font-size:14px;z-index:60;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+footer.tiny{text-align:center;color:var(--muted);font-size:12px;padding:10px 20px 20px}
+</style>
+</head>
+<body>
+<div class="bgsea" aria-hidden="true"></div>
+<div class="app">
+
+<!-- HOME -->
+<section class="view" id="v-home">
+  <figure class="poster">
+    <img src="poster.jpg?v=2" alt="Pete's 50th, Bali, 30th April to 2nd May 2027" width="1086" height="1448">
+    <div class="fadeb"></div>
+  </figure>
+  <div class="cta">
+    <div class="eyebrow" id="h-dates">Bali · 1–2 May 2027</div>
+    <div class="countdown" id="countdown"></div>
+    <button class="btn coral block" data-go="rsvp" id="cta-rsvp">💌 RSVP now</button>
+  </div>
+  <div class="quick after">
+    <button class="qbtn welcome" data-go="welcome"><span class="wi">🍹</span><span><b>Fri-yay Welcome Night</b><small>Fri 30 Apr · 6pm onwards · casual</small></span></button>
+    <button class="qbtn sat" data-go="saturday"><span class="wi">🌴</span><span><b>Saturday Day – Enjoy Bali</b><small>Sat 1 May · daytime at your leisure</small></span></button>
+    <button class="qbtn disco" data-go="studio"><img src="studio50.jpg" alt=""><span><b>Studio 50-Moore main party!</b><small>Sat 1 May · 7pm until late · blue &amp; silver</small></span></button>
+    <button class="qbtn sunday" data-go="sundays"><img src="sundays.jpg" alt=""><span><b>Easy Like Sunday Moore-nings</b><small>Sun 2 May · 12pm · Sundays Beach Club</small></span></button>
+    <button class="qbtn" data-go="schedule"><span class="ic">🗓️</span><b>Itinerary</b><small>30 Apr – 2 May</small></button>
+    <button class="qbtn" data-go="photos"><span class="ic">📸</span><b>Photo wall</b><small id="q-photos">Share your shots</small></button>
+    <button class="qbtn" data-go="tips"><span class="ic">🌺</span><b>Bali tips</b></button>
+    <button class="qbtn" data-go="todo"><span class="ic">🧭</span><b>Bali Things to Do</b></button>
+  </div>
+  <div class="pad">
+    <button class="btn pri block" data-go="schedule" style="font-size:16px;padding:16px;border-radius:16px">🗓️ Full Itinerary</button>
+    <div id="owner-panel" class="hidden">
+      <div class="sec-h"><h2>Guest list</h2><span class="eyebrow">Only you see this</span></div>
+      <div class="stats">
+        <div class="stat"><b id="s-yes">0</b><span>Coming</span></div>
+        <div class="stat" style="background:var(--gold)"><b id="s-maybe">0</b><span>Maybe</span></div>
+        <div class="stat" style="background:var(--coral)"><b id="s-no">0</b><span>Can't</span></div>
+      </div>
+      <div class="card">
+        <div class="eyebrow" style="margin-bottom:6px">Headcount by event</div>
+        <div id="s-events" style="font-size:14.5px;line-height:1.7"></div>
+        <div class="eyebrow" style="margin:12px 0 6px">Dietary needs</div>
+        <div id="s-diet" style="font-size:14.5px;line-height:1.6"></div>
+        <div class="eyebrow" style="margin:12px 0 6px">Saturday day activities</div>
+        <div id="s-acts" style="font-size:14.5px;line-height:1.6"></div>
+      </div>
+      <div class="card">
+        <ul class="rlist" id="r-list"></ul>
+        <div class="btnrow"><button class="btn sec" id="copy-csv">Copy guest list (CSV)</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="view pad" id="v-schedule">
+  <div class="eyebrow">The plan</div>
+  <div class="sec-h"><h2>Itinerary</h2></div>
+  <div id="events"></div>
+</section>
+
+<!-- STUDIO 50-MOORE -->
+<section class="view" id="v-studio">
+  <img class="logo" src="studio50-bali.jpg" alt="Studio 50-Moore logo on a blue disco ball under tropical water" width="1024" height="1024">
+  <div class="wrap2">
+    <h1 class="s-title">Studio 50-Moore main party!</h1>
+    <p class="s-sub">One night only. The disco is open, the ball is spinning, and Pete is turning fifty.</p>
+    <div class="s-card"><div class="s-kv">
+      <b>When</b><span>Saturday 1 May 2027 · 7pm until late</span>
+      <b>Where</b><span>Wildflower, Ungasan (near Uluwatu)</span>
+      <b>Dress</b><span>Blue &amp; silver</span>
+    </div>
+    <div class="btnrow"><a class="btn disco" href="https://maps.app.goo.gl/Mu8r183u9Rj2xCBM7" target="_blank" rel="noopener">📍 Directions</a><button class="btn ghost" data-go="rsvp">💌 RSVP</button></div></div>
+
+    <div class="s-card"><h3>🪩 The dress code: blue &amp; silver</h3>
+      <div class="swatches"><div class="sw navy">NAVY</div><div class="sw royal">ROYAL</div><div class="sw silver">SILVER</div><div class="sw glitter">SPARKLE</div></div>
+      <p>Think disco era with a tropical twist. Go as big as you like:</p>
+      <ul>
+        <li>Sequins, metallics, satin and anything that catches the light</li>
+        <li>Silver jumpsuits, blue velvet, wide collars and flares</li>
+        <li>Glitter, rhinestones, silver jewellery and statement sunglasses</li>
+        <li>It's a warm night in Bali, so pick breathable fabrics and shoes you can dance in on garden paths</li>
+      </ul>
+    </div>
+
+    <div class="s-card"><h3>✨ The night</h3>
+      <ul>
+        <li>Dinner at the villa</li>
+        <li>A few (short!) speeches for the birthday boy</li>
+        <li>Then the dance floor opens until late</li>
+      </ul>
+    </div>
+
+    <div class="s-card"><h3>🚕 Getting home</h3>
+      <p>Grab and Gojek pickups can be hit and miss around Uluwatu late at night. Pre-book a driver for the end of the night or share a car with friends staying nearby.</p>
+    </div>
+
+    <div class="s-card"><h3>📸 Capture it</h3>
+      <p>Post your best disco shots to the photo wall so everyone can relive the night.</p>
+      <div class="btnrow"><button class="btn disco" data-go="photos">Open the photo wall</button></div>
+    </div>
+    <img src="discoball-pool.jpg?v=4" alt="A mirrored disco ball floating in sparkling turquoise water" style="display:block;width:100%;height:auto;border-radius:20px;margin-top:4px;border:1px solid rgba(190,205,235,.28)">
+  </div>
+</section>
+
+<!-- WELCOME -->
+<section class="view" id="v-welcome">
+  <img class="w-hero" src="wildflower.jpg" alt="Wildflower villa: tented suites, lawns, pools and sun loungers" width="1224" height="751">
+  <div class="pad" style="padding-top:4px">
+    <div class="eyebrow">Friday 30 April 2027 · 6pm onwards</div>
+    <h1 class="w-title">Welcome Night</h1>
+    <p style="margin:0 0 16px;color:#3b4746;line-height:1.55">You made it to Bali! Land, check in, freshen up, then come to Wildflower and kick off Pete's 50th by the pool. We'll have cold drinks flowing and freshly made pizzas coming out all evening. Grab a slice and a cocktail, catch up with friends old and new, and settle into island time. No pressure, no schedule. It's just a relaxed night before the big one.</p>
+    <div class="facts">
+      <div class="fact"><b>When</b><span>6pm onwards</span></div>
+      <div class="fact"><b>Dress</b><span>Casual</span></div>
+      <div class="fact" style="grid-column:1/-1"><b>Where</b><span>Wildflower villa, Ungasan</span></div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:19px">📍 Location</h3>
+      <p style="margin:6px 0 0;font-size:14.5px">Wildflower<br>Jl. Langui Toyaning I Gg. Langui No.45, Ungasan, Kuta Selatan, Badung, Bali 80361</p>
+      <p class="small" style="margin-top:6px">A private villa on the Bukit Peninsula near Uluwatu, with two pools and gardens.</p>
+      <div class="btnrow">
+        <a class="btn pri" href="https://maps.app.goo.gl/Mu8r183u9Rj2xCBM7" target="_blank" rel="noopener">Open in Google Maps</a>
+        <a class="btn sec" href="https://wildflower.id/" target="_blank" rel="noopener">See the villa</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:19px">✈️ Arrival-day checklist</h3>
+      <ul style="padding-left:18px;margin:6px 0;font-size:14.5px;line-height:1.6">
+        <li>Pay the Bali tourist levy (IDR 150,000) online before you fly and keep the QR code handy</li>
+        <li>From the airport, Grab has a pickup lounge in arrivals, or pre-book a driver</li>
+        <li>Allow plenty of time from the airport to Ungasan, especially in late-afternoon traffic</li>
+        <li>Get some rupiah for drivers and tips</li>
+        <li>Late flight? No stress. Come whenever you land</li>
+      </ul>
+      <div class="btnrow"><button class="btn sec" data-go="tips">More Bali tips</button></div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:19px">👕 Dress code: casual</h3>
+      <p style="margin:6px 0 0;font-size:14.5px;line-height:1.55">Whatever you're comfortable in after a flight: shorts, linen, sundresses and sandals. Save the sparkle for Saturday's <a href="#studio">Studio 50-Moore</a>.</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:19px">💌 Let us know you're coming</h3>
+      <p style="margin:6px 0 0;font-size:14.5px">Tick "Welcome Night" on your RSVP so we know how many drinks and pizzas to plan for.</p>
+      <div class="btnrow"><button class="btn coral" data-go="rsvp">RSVP</button><button class="btn sec" data-go="photos">📸 Photo wall</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- SATURDAY DAY -->
+<section class="view" id="v-saturday">
+  <div class="sat-hero">
+    <div class="emo">⛳🛍️🛕🏖️🌊</div>
+    <h1>Saturday Day – Enjoy Bali</h1>
+    <p>Saturday 1 May · daytime, before Studio 50-Moore at 7pm</p>
+  </div>
+  <div class="pad">
+    <div class="card">
+      <h3 style="font-size:20px">☀️ Your day, your way</h3>
+      <p style="margin:8px 0 0;font-size:15px;line-height:1.55">We've kept Saturday daytime open so everyone can do their own thing at their own pace. Sleep in, explore, or relax by the pool.</p>
+      <p style="margin:10px 0 0;font-size:15px;line-height:1.55">Depending on what everyone fancies, we may organise a <b>group activity</b> such as golf or a tour. Let us know what you'd be up for below.</p>
+      <p class="small" style="margin-top:10px">Just remember to be back, showered and sparkling, for <a href="#studio">Studio 50-Moore at 7pm</a>!</p>
+    </div>
+    <form id="sat-form" class="card">
+      <h3 style="font-size:20px">💌 RSVP: what would you be up for?</h3>
+      <p class="small" style="margin:4px 0 12px">Tick as many as you like.</p>
+      <div class="note hidden" id="sat-noaccess" style="margin-bottom:12px">You can choose here, but saving needs an invite from Pete. Tap <b>Copy my choices</b> and message them to him instead.</div>
+      <div class="actgrid" id="sat-acts"></div>
+      <div id="sat-other-wrap" class="hidden">
+        <label class="f" for="sat-other">What else would you like to do?</label>
+        <input type="text" id="sat-other" placeholder="e.g. surf lesson, spa day, cooking class">
+      </div>
+      <label class="f" for="sat-name">Your name</label>
+      <input type="text" id="sat-name" placeholder="First and last name">
+      <div class="btnrow" style="margin-top:16px">
+        <button type="submit" class="btn coral block" id="sat-save">Send my choices</button>
+        <a class="btn block hidden" id="sat-wa" href="#" style="background:#25D366;color:#fff">💬 Send via WhatsApp</a>
+        <button type="button" class="btn sec block hidden" id="sat-copy">Copy my choices</button>
+      </div>
+      <div class="status" id="sat-status"></div>
+    </form>
+  </div>
+</section>
+
+<!-- SUNDAYS -->
+<section class="view" id="v-sundays">
+  <img class="cove" src="sundays.jpg" alt="Sundays Beach Club: thatched bungalows, white umbrellas and turquoise water in a jungle-backed cove" width="1212" height="568" style="object-fit:cover">
+  <div class="pad" style="padding-top:4px">
+    <div class="eyebrow">Sunday 2 May · 12pm onwards</div>
+    <h1 class="b-title">Beach Club Pool Party at Sundays</h1>
+    <p style="margin:0 0 16px;color:#3b4746;line-height:1.55">Recovery day! Sundays Beach Club sits in a cliff-backed cove in Ungasan, a short drive from Wildflower. A lift carries you from the clifftop down to the sand. Then it's swimming, paddling, cocktails and a sunset bonfire.</p>
+    <div class="facts">
+      <div class="fact"><b>Meet</b><span>From 12pm</span></div>
+      <div class="fact"><b>Dress</b><span>Pool party</span></div>
+      <div class="fact"><b>Open</b><span>7:30am – 10pm</span></div>
+      <div class="fact"><b>Bonfire</b><span>From 6:30pm</span></div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:19px">📍 Location</h3>
+      <p style="margin:6px 0 0;font-size:14.5px">Sundays Beach Club<br>Jalan Pantai Selatan Gau, Banjar Wijaya Kusuma, Ungasan 80362, Bali</p>
+      <p class="small" style="margin-top:6px">It's a short drive from Wildflower. At the top, take the cliff lift (the "inclinator") down to the beach.</p>
+      <div class="btnrow">
+        <a class="btn pri" href="https://www.google.com/maps/place/Sundays+Beach+Club/@-8.8472658,115.150859,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0xb38f06acc4d67a83!8m2!3d-8.8472658!4d115.150859" target="_blank" rel="noopener">Open in Google Maps</a>
+        <a class="btn sec" href="https://www.sundaysbeachclub.com/" target="_blank" rel="noopener">📸 See photos</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:19px">🌊 The afternoon</h3>
+      <ul class="timeline2">
+        <li><time>12pm</time><span>Arrive, take the lift down and grab a spot on the sand</span></li>
+        <li><time>Afternoon</time><span>Kayaks, paddle boards and snorkelling in the lagoon and rock pools (free, depending on the tide)</span></li>
+        <li><time>5pm</time><span>Live music, 5–8pm</span></li>
+        <li><time>6pm</time><span>Sunday ASADO BBQ starts</span></li>
+        <li><time>6:30pm</time><span>Sunset bonfire with beanbags and marshmallows</span></li>
+      </ul>
+      <div class="note" style="margin-top:12px">🛏️ <b>Book your own daybed.</b> Reserve your spot directly with Sundays.
+        <div class="btnrow" style="margin-top:8px"><a class="btn coral" href="https://www.sevenrooms.com/explore/sundaysbeachclub/reservations/create/search/" target="_blank" rel="noopener">Book a daybed</a></div></div>
+      <p class="small" style="margin-top:8px">These are the club's regular daily times and could change before May 2027. Water activities depend on the tide, so check their <a href="https://www.sundaysbeachclub.com/bali-tide-chart/" target="_blank" rel="noopener">tide chart</a>.</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:19px">🍤 Food & drink</h3>
+      <p style="margin:6px 0 0;font-size:14.5px;line-height:1.55">Seafood from local fishermen, signature cocktails, craft beer and a big wine list. <a href="https://linktr.ee/sundaysmenu" target="_blank" rel="noopener">See the menus</a>.</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:19px">🎒 What to bring</h3>
+      <ul style="padding-left:18px;margin:6px 0;font-size:14.5px;line-height:1.6">
+        <li>Swimwear, a cover-up, hat and sunnies</li>
+        <li>Reef-safe sunscreen</li>
+        <li>Reef shoes if you want to explore the rock pools</li>
+      </ul>
+      <div class="btnrow"><button class="btn coral" data-go="photos">📸 Photo wall</button><button class="btn sec" data-go="rsvp">💌 RSVP</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- THINGS TO DO -->
+<section class="view pad" id="v-todo">
+  <div class="eyebrow">Make the most of it</div>
+  <div class="sec-h"><h2>Bali Things to Do</h2></div>
+  <div class="todo-list">
+    <button class="todo" data-go="spa"><span class="ti"><img src="spa.jpg" alt=""></span><span><b>Villa Home Spa</b><small>Massages, facials & nails at Wildflower</small></span></button>
+    <button class="todo" data-go="yoga"><span class="ti">🧘</span><span><b>In-house Yoga</b><small>Private yoga & Pilates at the villa</small></span></button>
+    <button class="todo" data-go="surf"><span class="ti">🏄</span><span><b>Surfing Lessons</b><small>Learn to surf on the Bukit</small></span></button>
+    <button class="todo" data-go="golf"><span class="ti">⛳</span><span><b>Golf</b><small>3 courses near Ungasan</small></span></button>
+  </div>
+</section>
+
+<!-- SPA -->
+<section class="view pad" id="v-spa">
+  <a href="#todo" class="backlink">← Things to Do</a>
+  <div class="eyebrow">At Wildflower</div>
+  <div class="sec-h"><h2>Villa Home Spa</h2></div>
+  <img class="spa-img" src="spa.jpg" alt="Wildflower Ungasan Home Spa menu" width="1080" height="1350">
+  <div class="card">
+    <h3 style="font-size:19px;margin-bottom:6px">💆 Treatments</h3>
+    <ul class="menu-list">
+      <li><span>Body massage (60 mins)</span><span>IDR 450k</span></li>
+      <li><span>Massage &amp; warm stone</span><span>IDR 600k</span></li>
+      <li><span>Reflexology (60 mins)</span><span>IDR 300k</span></li>
+      <li><span>Foot massage (30 mins)</span><span>IDR 200k</span></li>
+      <li><span>Shiatsu (60 mins)</span><span>IDR 450k</span></li>
+      <li><span>Head &amp; shoulder (30 mins)</span><span>IDR 250k</span></li>
+      <li><span>Duo massage (45 mins)</span><span>IDR 700k</span></li>
+      <li><span>Facial</span><span>IDR 400k</span></li>
+      <li><span>Ear candle</span><span>IDR 300k</span></li>
+      <li><span>Manicure, incl. gel/polish</span><span>IDR 400k</span></li>
+      <li><span>Pedicure, incl. gel/polish</span><span>IDR 400k</span></li>
+      <li><span>Honeymoon package (105 mins)</span><span>IDR 1,500k</span></li>
+    </ul>
+    <p class="small" style="margin-top:10px">All sessions include essential oils and soothing music for deep relaxation.</p>
+  </div>
+  <div class="note">📲 <b>Reservations:</b> message the Wildflower Guest Support Group. Treatments are popular around party day, so book early if you want to be pampered before Studio 50-Moore!</div>
+</section>
+
+<!-- YOGA -->
+<section class="view pad" id="v-yoga">
+  <a href="#todo" class="backlink">← Things to Do</a>
+  <div class="eyebrow">At Wildflower</div>
+  <div class="sec-h"><h2>In-house Yoga</h2></div>
+  <div class="card">
+    <h3 style="font-size:19px">🧘 Yoga &amp; Pilates at the villa</h3>
+    <p style="margin:6px 0 0;font-size:14.5px;line-height:1.55">For private yoga or in-house Pilates sessions, we work with our trusted wellness partner, <b>Bluvana</b>.</p>
+  </div>
+  <div class="card">
+    <h3 style="font-size:19px;margin-bottom:6px">💰 Price list</h3>
+    <ul class="menu-list">
+      <li><span>Private session (1 person)</span><span>SGD 85</span></li>
+      <li><span>2–3 people</span><span>SGD 107</span></li>
+      <li><span>4–6 people</span><span>SGD 142</span></li>
+      <li><span>More than 6 people</span><span>SGD 21 / person</span></li>
+    </ul>
+    <p class="small" style="margin-top:10px">Group sessions work out cheaper per person, so grab a few friends for a sunrise or recovery session!</p>
+  </div>
+  <div class="note">📲 <b>To book:</b> message the Wildflower Guest Support Group.</div>
+</section>
+
+<!-- SURF -->
+<section class="view pad" id="v-surf">
+  <a href="#todo" class="backlink">← Things to Do</a>
+  <div class="eyebrow">On the Bukit Peninsula</div>
+  <div class="sec-h"><h2>Surfing Lessons</h2></div>
+  <div class="card">
+    <h3 style="font-size:19px">🏄 Learn to surf near Uluwatu</h3>
+    <p style="margin:6px 0 0;font-size:14.5px;line-height:1.55">The Bukit has some of Bali's most famous waves, plus gentler beginner spots. Schools pick the beach each day depending on swell and tide. Beginner lessons usually run about 2 hours and cover ocean safety, paddling and standing up.</p>
+  </div>
+  <div class="card">
+    <h3 style="font-size:18px">Bali Surfing Camp · Padang Padang</h3>
+    <p style="margin:6px 0 0;font-size:14.5px;line-height:1.55">Established surf school near Uluwatu. You don't need to stay at the camp, and transport from the school to the break is included.</p>
+    <div class="btnrow"><a class="btn pri" href="https://www.balisurfingcamp.com/beginner-surf-lessons" target="_blank" rel="noopener">Beginner lessons</a></div>
+  </div>
+  <div class="card">
+    <h3 style="font-size:18px">Soultide Surf School · Uluwatu</h3>
+    <p style="margin:6px 0 0;font-size:14.5px;line-height:1.55">A small, locally run school with a friendly, community feel.</p>
+    <div class="btnrow"><a class="btn pri" href="https://soultidebali.carrd.co/" target="_blank" rel="noopener">Visit website</a></div>
+  </div>
+  <div class="card">
+    <h3 style="font-size:18px">🌊 Beginner-friendly beaches nearby</h3>
+    <ul style="padding-left:18px;margin:6px 0;font-size:14.5px;line-height:1.6">
+      <li><b>"Baby Padang"</b> at Padang Padang: a mellow wave popular for lessons</li>
+      <li><b>Balangan</b> and <b>Dreamland</b>: sandy beaches often used by surf schools</li>
+    </ul>
+    <p class="small">Uluwatu's main breaks are for experienced surfers only. Always go with an instructor if you're new.</p>
+  </div>
+</section>
+
+<!-- GOLF -->
+<section class="view pad" id="v-golf">
+  <a href="#todo" class="backlink">← Things to Do</a>
+  <div class="eyebrow">Tee off near Ungasan</div>
+  <div class="sec-h"><h2>Golf</h2></div>
+  <div class="card course">
+    <h3 style="font-size:19px">⛳ Bukit Pandawa Golf &amp; Country Club</h3>
+    <div class="tagrow"><span class="tag">Kutuh · closest to Wildflower</span><span class="tag">18 holes · par 54</span></div>
+    <p style="margin:6px 0 0;font-size:14.5px;line-height:1.55">A clifftop par-3 course with Indian Ocean views on many holes. It's quick to play and fun for all levels, with carts and caddies included in the price.</p>
+    <p class="small" style="margin-top:6px">Jl. Gunung Payung No. 8, Kutuh, South Kuta · +62 811 3811 2828</p>
+    <div class="btnrow">
+      <a class="btn pri" href="https://www.bukitpandawagolf.com/" target="_blank" rel="noopener">Website &amp; tee times</a>
+      <a class="btn sec" href="https://www.google.com/maps/search/?api=1&amp;query=Bukit+Pandawa+Golf+%26+Country+Club+Bali" target="_blank" rel="noopener">Map</a>
+    </div>
+  </div>
+  <div class="card course">
+    <h3 style="font-size:19px">⛳ New Kuta Golf</h3>
+    <div class="tagrow"><span class="tag">Pecatu · near Dreamland Beach</span><span class="tag">18 holes · par 72</span></div>
+    <p style="margin:6px 0 0;font-size:14.5px;line-height:1.55">Indonesia's first links-style championship course, set on limestone cliffs above Dreamland and Balangan beaches. Challenging, spectacular, and the pick for keen golfers.</p>
+    <p class="small" style="margin-top:6px">Jl. Raya Uluwatu, Pecatu · +62 361 848 1333</p>
+    <div class="btnrow">
+      <a class="btn pri" href="https://www.newkutagolf.co.id/" target="_blank" rel="noopener">Website &amp; tee times</a>
+      <a class="btn sec" href="https://www.google.com/maps/search/?api=1&amp;query=New+Kuta+Golf+Bali" target="_blank" rel="noopener">Map</a>
+    </div>
+  </div>
+  <div class="card course">
+    <h3 style="font-size:19px">⛳ Bali National Golf Club (Bali Beach Country Club)</h3>
+    <div class="tagrow"><span class="tag">Nusa Dua</span><span class="tag">18 holes · par 72</span></div>
+    <p style="margin:6px 0 0;font-size:14.5px;line-height:1.55">Southern Bali's classic resort course, with tropical and lakeside holes and ocean views across Nusa Dua.</p>
+    <div class="note" style="margin-top:10px">⚠️ This course closed in May 2025 for redevelopment and is scheduled to reopen in early 2027 as Bali Beach Country Club. Check it's open before you book.</div>
+    <div class="btnrow">
+      <a class="btn pri" href="https://balinational.com/" target="_blank" rel="noopener">Website</a>
+      <a class="btn sec" href="https://www.google.com/maps/search/?api=1&amp;query=Bali+National+Golf+Club+Nusa+Dua" target="_blank" rel="noopener">Map</a>
+    </div>
+  </div>
+  <div class="note">🏌️ Keen on a group round? Pick <b>Golf</b> on the <a href="#saturday">Saturday Day – Enjoy Bali</a> page so Pete knows who's in.</div>
+</section>
+
+<!-- MAP -->
+<section class="view pad" id="v-map">
+  <div class="eyebrow">Getting there</div>
+  <div class="sec-h"><h2>Venues & maps</h2></div>
+  <div class="mapart">
+    <svg viewBox="0 0 400 300" role="img" aria-label="Simple map of south Bali showing Wildflower in Ungasan, the airport, Uluwatu, Seminyak and Canggu">
+      <rect width="400" height="300" fill="#bfe1dc"/>
+      <path d="M40 40 C120 20 260 18 360 50 C380 90 370 140 330 160 C300 172 270 160 250 176 C236 188 248 206 236 222 C220 246 190 262 160 258 C130 254 118 232 132 214 C142 200 158 196 158 180 C158 160 120 156 96 142 C60 122 30 90 40 40Z" fill="#f2e6cf" stroke="#d8c6a4" stroke-width="2"/>
+      <path d="M150 240 C170 250 200 248 216 232" fill="none" stroke="#d8c6a4" stroke-width="2" stroke-dasharray="4 4"/>
+      <g font-family="DM Sans, sans-serif" font-size="12" fill="#3b4746" font-weight="700">
+        <circle cx="118" cy="120" r="5" fill="#9aa9a6"/><text x="74" y="108" fill="#5f6d6a" font-weight="500">Canggu</text>
+        <circle cx="150" cy="150" r="5" fill="#9aa9a6"/><text x="162" y="150" fill="#5f6d6a" font-weight="500">Seminyak</text>
+        <circle cx="188" cy="186" r="6" fill="#0f5c5a"/><text x="200" y="190">✈ DPS airport</text>
+        <circle cx="146" cy="236" r="5" fill="#9aa9a6"/><text x="92" y="236" fill="#5f6d6a" font-weight="500">Uluwatu</text>
+        <path d="M200 236 l0 -22" stroke="#e2674b" stroke-width="2"/>
+        <circle cx="200" cy="240" r="9" fill="#e2674b" stroke="#fff" stroke-width="3"/>
+        <rect x="212" y="226" width="182" height="30" rx="15" fill="#2a1a10"/>
+        <text x="224" y="246" fill="#ffd98f" font-size="13">🌸 Wildflower · Ungasan</text>
+        <circle cx="250" cy="120" r="5" fill="#9aa9a6"/><text x="262" y="124" fill="#5f6d6a" font-weight="500">Ubud ↑</text>
+      </g>
+      <text x="20" y="290" font-family="DM Sans" font-size="10" fill="#5f6d6a">Not to scale · tap a venue below for live directions</text>
+    </svg>
+  </div>
+  <div id="venues"></div>
+  <div class="note">🚗 Allow extra time: south Bali traffic is slow, especially late afternoon, and the roads up to the Bukit can bottleneck. Some villages around Uluwatu restrict Grab/Gojek pickups, so for late nights at Wildflower it's easiest to pre-book a driver or share a car.</div>
+</section>
+
+<!-- RSVP -->
+<section class="view pad" id="v-rsvp">
+  <div class="eyebrow">Kindly reply</div>
+  <div class="sec-h"><h2>RSVP</h2></div>
+  <div class="note hidden" id="rsvp-noaccess">You can view everything here, but saving an RSVP needs an invite from Pete. Fill the form in, tap <b>Copy my RSVP</b> and message it to him instead.</div>
+  <form id="rsvp-form" class="card" autocomplete="on">
+    <label class="f" for="r-name">Your name</label>
+    <input type="text" id="r-name" required placeholder="First and last name">
+    <label class="f">Will you be there?</label>
+    <div class="seg" id="r-att">
+      <button type="button" data-v="yes">Yes! 🎉</button>
+      <button type="button" data-v="maybe">Maybe</button>
+      <button type="button" data-v="no">Can't make it</button>
+    </div>
+    <div id="r-more">
+      <label class="f">Which events?</label>
+      <div class="chips" id="r-events"></div>
+      <label class="f">Dietary requirements</label>
+      <div class="chips" id="r-diet"></div>
+      <label class="f" for="r-dnotes">Allergies or other notes</label>
+      <textarea id="r-dnotes" placeholder="e.g. severe peanut allergy, carries an EpiPen"></textarea>
+      <label class="f" for="r-arrive">When do you land in Bali?</label>
+      <input type="date" id="r-arrive">
+      <label class="f" for="r-stay">Where are you staying?</label>
+      <input type="text" id="r-stay" placeholder="Hotel / villa and area">
+    </div>
+    <label class="f" for="r-msg">A note for Pete (optional)</label>
+    <textarea id="r-msg" placeholder="Birthday wishes, questions…"></textarea>
+    <div class="btnrow" style="margin-top:18px">
+      <button type="submit" class="btn coral block" id="r-save">Send RSVP</button>
+      <a class="btn block hidden" id="r-wa" href="#" style="background:#25D366;color:#fff">💬 Send RSVP via WhatsApp</a>
+      <button type="button" class="btn sec block hidden" id="r-copy">Copy my RSVP</button>
+    </div>
+    <div class="status" id="r-status"></div>
+  </form>
+</section>
+
+<!-- PHOTOS -->
+<section class="view pad" id="v-photos">
+  <div class="eyebrow">Live gallery</div>
+  <div class="sec-h"><h2>Photo wall</h2><span class="eyebrow" id="p-count"></span></div>
+  <label class="upl" id="p-upl"><input type="file" id="p-file" accept="image/*" multiple>📷 Add photos</label>
+  <div class="note hidden" id="p-noaccess">Only invited guests can add photos. Ask Pete to invite your email address.</div>
+  <div class="card hidden" id="p-static" style="text-align:center">
+    <div style="font-size:40px">📸</div>
+    <h3 style="font-size:20px;margin-top:6px">Share your party photos</h3>
+    <p style="margin:8px 0 0;font-size:14.5px;line-height:1.55" id="p-static-text">Photo sharing details are coming soon. Keep snapping!</p>
+    <div class="btnrow" style="justify-content:center"><a class="btn coral hidden" id="p-static-btn" href="#" target="_blank" rel="noopener">Open the photo album</a></div>
+  </div>
+  <div class="status" id="p-status"></div>
+  <div class="grid" id="p-grid"></div>
+  <div class="empty" id="p-empty">No photos yet. Be the first to post one 🌅</div>
+</section>
+
+<!-- TIPS -->
+<section class="view pad" id="v-tips">
+  <div class="eyebrow">Know before you go</div>
+  <div class="sec-h"><h2>Bali tips</h2></div>
+  <details class="tip" open><summary><span class="ic">🛵</span>Grab, Gojek & taxis</summary><div class="body">
+    <ul>
+      <li><b>Grab</b> is the easiest for visitors: English app, takes foreign credit cards, and has a pickup lounge at the airport arrivals area.</li>
+      <li><b>Gojek</b> is often cheapest, especially <i>GoRide</i> motorbike hops. Foreign cards are sometimes refused, so keep cash as a backup.</li>
+      <li><b>“No pickup” zones:</b> some village associations block app pickups in parts of Canggu, Ubud, Uluwatu and near some temples. Drop-offs are usually fine. If you see a “No Grab / No Gojek” sign, walk a little way out before booking, and don't argue with local drivers.</li>
+      <li><b>Bluebird taxis</b> (blue cars, own app) are the trusted metered option. Make sure the meter is on.</li>
+      <li>Avoid drivers who approach you at tourist spots. They usually charge several times the fair price.</li>
+      <li>Tip small amounts in-app (Rp 5,000–10,000) for good service.</li>
+      <li>We'd rather you didn't rent a scooter for party nights. Book a car or share one.</li>
+    </ul></div></details>
+  <details class="tip"><summary><span class="ic">👗</span>Dress codes</summary><div class="body">
+    <ul id="dress-list"></ul>
+    <p><b>Temples:</b> cover shoulders and knees, and wear a sarong and sash (you can usually borrow or rent one at the entrance).</p>
+    <p><b>Beach clubs:</b> swimwear is fine by the pool, but bring a cover-up for the restaurant. Some clubs check bags at the door.</p></div></details>
+  <details class="tip"><summary><span class="ic">🛂</span>Arrival, visa &amp; tourist levy</summary><div class="body">
+    <p style="margin:0 0 8px"><b>🇦🇺 Australia · 🇳🇱 Netherlands · 🇮🇪 Ireland · 🇳🇿 New Zealand · 🇩🇪 Germany</b><br>All five passports need a <b>Visa on Arrival (VoA)</b> for Bali. None of them can enter visa-free.</p>
+    <div class="phr" style="grid-template-columns:auto 1fr;margin:10px 0 12px;background:#e2f0ec;border-radius:12px;padding:10px 12px">
+      <b>Cost</b><span>IDR 500,000 per person (roughly AUD 50 / €30), children included</span>
+      <b>Stay</b><span>30 days, single entry</span>
+      <b>Extend</b><span>Once, for another 30 days (60 in total)</span>
+      <b>Passport</b><span>Valid for at least 6 months from arrival</span>
+      <b>Also need</b><span>A return or onward flight booking</span>
+    </div>
+    <p style="margin:0 0 6px"><b>Two ways to get it:</b></p>
+    <ul>
+      <li><b>e-VoA online (recommended):</b> apply and pay on the official <a href="https://evisa.imigrasi.go.id/" target="_blank" rel="noopener">evisa.imigrasi.go.id</a> site before you fly, ideally at least 48 hours ahead. You skip the visa payment queue at the airport.</li>
+      <li><b>At the airport:</b> pay at the VoA counter in arrivals, before immigration. Cards and cash are accepted.</li>
+    </ul>
+    <p style="margin:12px 0 6px"><b>Your three arrival must-dos:</b></p>
+    <ul>
+      <li><b>1. Visa on Arrival</b> (above)</li>
+      <li><b>2. All Indonesia arrival card:</b> free and mandatory, covering customs and health. Fill it in on <a href="https://allindonesia.imigrasi.go.id/" target="_blank" rel="noopener">allindonesia.imigrasi.go.id</a> or the All Indonesia app within 3 days before you land, and keep the QR code on your phone.</li>
+      <li><b>3. Bali tourist levy:</b> IDR 150,000 per person, children included. Pay on the official <a href="https://lovebali.baliprov.go.id/" target="_blank" rel="noopener">Love Bali site</a> or app and keep the QR voucher.</li>
+    </ul>
+    <div class="note" style="margin-top:10px">⚠️ <b>Beware of scam sites.</b> Official Indonesian government sites end in <b>.go.id</b>. Look-alike sites charge extra, and some never deliver a visa at all. The arrival card is always free.</div>
+    <p class="small" style="margin-top:10px">Rules can change before May 2027. Check your government's travel advice (e.g. Smartraveller for Australians) a few weeks before you fly.</p>
+  </div></details>
+  <details class="tip"><summary><span class="ic">💸</span>Money</summary><div class="body">
+    <ul>
+      <li>Currency is the Indonesian rupiah (IDR). The zeros add up fast: Rp 100,000 is a small sum.</li>
+      <li>Cards work at most venues, sometimes with a ~3% surcharge. Carry small notes for drivers, warungs and tips.</li>
+      <li>Use ATMs inside banks or minimarts rather than street-side machines.</li>
+    </ul></div></details>
+  <details class="tip"><summary><span class="ic">🙏</span>Local etiquette</summary><div class="body">
+    <ul>
+      <li>Step around the small woven offerings (<i>canang sari</i>) you'll see on footpaths and doorsteps.</li>
+      <li>Give and receive things with your right hand.</li>
+      <li>Keep beachwear for the beach and pool.</li>
+      <li>Stay calm and smile. Raising your voice gets you nowhere in Bali.</li>
+    </ul></div></details>
+  <details class="tip"><summary><span class="ic">🩺</span>Staying well</summary><div class="body">
+    <ul>
+      <li>Drink bottled or filtered water only, including for brushing your teeth if you're sensitive.</li>
+      <li>The sun is strong near the equator. Bring reef-safe sunscreen, a hat and mosquito repellent.</li>
+      <li>Get travel insurance, and check it covers scooters if you plan to ride one.</li>
+      <li>Emergency number: <b>112</b>.</li>
+    </ul></div></details>
+  <details class="tip"><summary><span class="ic">💬</span>Handy phrases</summary><div class="body">
+    <div class="phr">
+      <b>Om Swastiastu</b><span>Balinese hello</span>
+      <b>Terima kasih</b><span>Thank you</span>
+      <b>Sama-sama</b><span>You're welcome</span>
+      <b>Berapa?</b><span>How much?</span>
+      <b>Tidak, terima kasih</b><span>No, thank you</span>
+      <b>Pelan-pelan</b><span>Slowly, please</span>
+      <b>Di pintu utama</b><span>At the main gate (for pickups)</span>
+    </div></div></details>
+</section>
+
+<div class="backhome"><a href="#home" class="btn pri">🏝️ Back to Home</a></div>
+<footer class="tiny">Made with love for Pete's 50th 🌴</footer>
+</div>
+
+<header class="topbar" id="topbar"><div class="wrap">
+  <button class="menubtn" id="menubtn" aria-label="Menu" aria-expanded="false" aria-controls="dd"><span></span></button>
+  <div class="brand">Pete's 50th</div>
+  <a href="#home" class="homebtn" id="homebtn">🏝️ Home</a>
+</div>
+<nav class="dd" id="dd" aria-label="Main menu">
+  <a href="#home" data-tab="home"><span class="ic">🏝️</span><span>Home<small>Save the date</small></span></a>
+  <a href="#welcome" data-tab="welcome"><span class="ic">🍹</span><span>Welcome Night<small>Drinks · Fri 30 Apr</small></span></a>
+  <a href="#saturday" data-tab="saturday"><span class="ic">🌴</span><span>Saturday Day – Enjoy Bali<small>Activities · Sat 1 May</small></span></a>
+  <a href="#studio" data-tab="studio"><span class="ic">🪩</span><span>Studio 50-Moore<small>The main party · Sat 1 May</small></span></a>
+  <a href="#sundays" data-tab="sundays"><span class="ic">🏖️</span><span>Sundays Beach Club<small>Pool party · Sun 2 May</small></span></a>
+  <a href="#schedule" data-tab="schedule"><span class="ic">🗓️</span><span>Itinerary<small>What's on, when</small></span></a>
+  <a href="#map" data-tab="map"><span class="ic">📍</span><span>Venues & maps<small>Directions to each event</small></span></a>
+  <a href="#rsvp" data-tab="rsvp"><span class="ic">💌</span><span>RSVP<small>Attendance & dietary needs</small></span></a>
+  <a href="#photos" data-tab="photos"><span class="ic">📸</span><span>Photo wall<small>Share your shots live</small></span></a>
+  <a href="#todo" data-tab="todo"><span class="ic">🧭</span><span>Bali Things to Do<small>Spa, yoga, surfing & golf</small></span></a>
+  <a href="#tips" data-tab="tips"><span class="ic">🌺</span><span>Bali tips<small>Grab, Gojek & dress codes</small></span></a>
+</nav></header>
+<div class="scrim" id="scrim"></div>
+
+<div class="lb hidden" id="lb">
+  <button class="x" id="lb-x" aria-label="Close">✕</button>
+  <img id="lb-img" alt="">
+  <div class="cap" id="lb-cap"></div>
+  <div class="btnrow"><button class="btn sec hidden" id="lb-del">Delete photo</button></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ EVENT DETAILS — edit these ============ */
+/* ============ SHARING SETTINGS — edit these ============ */
+// Pete's WhatsApp number in international format, digits only (e.g. "6591234567").
+// Leave "" and WhatsApp will ask guests which chat to send their RSVP to.
+const WHATSAPP_NUMBER = "";
+// Link to the shared photo album or WhatsApp photo group. Leave "" for "coming soon".
+const PHOTO_LINK = "";
+const PHOTO_LINK_LABEL = "Open the photo album";
+/* ===================================================== */
+const EVENT = {
+  // ISO date-time of the main party (Bali time, UTC+8). Leave "" until confirmed.
+  mainPartyISO: "2027-04-30T18:00:00+08:00",
+  datesLabel: "Bali · Fri 30 Apr – Sun 2 May 2027",
+  events: [
+    { id:"welcome", emoji:"🍹", title:"Welcome Night", when:"Fri 30 Apr · 6pm onwards",
+      venue:"Wildflower", area:"Ungasan, near Uluwatu",
+      mapUrl:"https://maps.app.goo.gl/Mu8r183u9Rj2xCBM7",
+      address:"Jl. Langui Toyaning I Gg. Langui No.45, Ungasan, Kuta Selatan, Badung, Bali 80361",
+      desc:"Arrival day! Land, check in, then come and kick off the partay with drinks at the villa.",
+      dress:"Casual", tags:["Arrival night","Drinks"] },
+    { id:"party", emoji:"🪩", title:"Studio 50-Moore", when:"Sat 1 May · 7pm until late",
+      venue:"Wildflower", area:"Ungasan, near Uluwatu",
+      mapUrl:"https://maps.app.goo.gl/Mu8r183u9Rj2xCBM7",
+      address:"Jl. Langui Toyaning I Gg. Langui No.45, Ungasan, Kuta Selatan, Badung, Bali 80361",
+      desc:"The main event. A disco night to celebrate Pete's fifty years, with dinner, (short) speeches and dancing until late.",
+      dress:"Studio 50-Moore: blue & silver", tags:["The main party","Disco","Late night"] },
+    { id:"beach", emoji:"🏖️", title:"Beach Club Pool Party", when:"Sun 2 May · 12pm onwards",
+      venue:"Sundays Beach Club", area:"Ungasan, near Uluwatu",
+      mapUrl:"https://www.google.com/maps/place/Sundays+Beach+Club/@-8.8472658,115.150859,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0xb38f06acc4d67a83!8m2!3d-8.8472658!4d115.150859",
+      address:"Jalan Pantai Selatan Gau, Banjar Wijaya Kusuma, Ungasan 80362, Bali",
+      desc:"A lift down the cliff to a private white-sand cove. Swim, paddle, eat, drink, then stay for the sunset bonfire.",
+      dress:"Beach club pool party: swimwear, cover-up, hat & sunnies", tags:["White-sand cove","Sunset bonfire"] }
+  ]
+};
+const DIETS = ["Vegetarian","Vegan","Pescatarian","Gluten-free","Dairy-free","Halal","Nut allergy","Shellfish allergy","No pork","No alcohol"];
+/* ==================================================== */
+
+const $ = s => document.querySelector(s);
+const el = (t, cls, txt) => { const e=document.createElement(t); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e; };
+const toast = m => { const t=$("#toast"); t.textContent=m; t.classList.add("show"); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove("show"),2200); };
+const mapsURL = ev => ev.mapUrl || "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent((/TB[AC]/.test(ev.venue)?"":ev.venue+", ")+ev.area+", Bali");
+
+/* ---------- routing ---------- */
+const VIEWS=["home","welcome","saturday","studio","sundays","schedule","map","rsvp","photos","tips","todo","spa","yoga","surf","golf"];
+function route(){
+  const h=(location.hash||"#home").slice(1); const v=VIEWS.includes(h)?h:"home";
+  VIEWS.forEach(n=>$("#v-"+n).classList.toggle("on",n===v));
+  document.querySelectorAll("#dd a").forEach(a=>a.classList.toggle("on",a.dataset.tab===v));
+  document.body.classList.toggle("is-home",v==="home");
+  setMenu(false); window.scrollTo(0,0); onScroll();
+}
+addEventListener("hashchange",route);
+function setMenu(open){
+  $("#dd").classList.toggle("open",open); $("#scrim").classList.toggle("open",open);
+  $("#menubtn").setAttribute("aria-expanded",String(open));
+}
+$("#menubtn").onclick=()=>setMenu(!$("#dd").classList.contains("open"));
+$("#scrim").onclick=()=>setMenu(false);
+document.querySelectorAll("#dd a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
+addEventListener("keydown",e=>{ if(e.key==="Escape") setMenu(false); });
+function onScroll(){
+  const onHome=$("#v-home").classList.contains("on");
+  $("#topbar").classList.toggle("solid", !onHome || scrollY>360);
+}
+addEventListener("scroll",onScroll,{passive:true});
+document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{location.hash=b.dataset.go;});
+
+/* ---------- static render ---------- */
+$("#h-dates").textContent=EVENT.datesLabel;
+function renderCountdown(){
+  const box=$("#countdown"); box.innerHTML="";
+  if(!EVENT.mainPartyISO){ const d=el("div"); d.append(el("b",null,"50"),el("span",null,"years young")); box.append(d); return; }
+  const diff=new Date(EVENT.mainPartyISO)-new Date();
+  if(diff<=0){ const d=el("div"); d.append(el("b",null,"🎉"),el("span",null,"It's party time")); box.append(d); return; }
+  const parts=[["days",Math.floor(diff/864e5)],["hrs",Math.floor(diff/36e5)%24],["min",Math.floor(diff/6e4)%60]];
+  parts.forEach(([l,n])=>{const d=el("div"); d.append(el("b",null,String(n)),el("span",null,l)); box.append(d);});
+}
+renderCountdown(); setInterval(renderCountdown,30000);
+
+(function(){
+
+
+  const box=$("#events");
+  EVENT.events.forEach(ev=>{
+    const w=el("div","event"); w.append(el("span","dot"));
+    const c=el("div","card");
+    c.append(el("div","when",ev.when), el("h3",null,ev.emoji+" "+ev.title));
+    const tr=el("div","tagrow"); ev.tags.forEach(t=>tr.append(el("span","tag",t))); tr.append(el("span","tag dc","👔 "+ev.dress)); c.append(tr);
+    c.append(el("p",null,ev.desc));
+    const loc=el("p",null,"📍 "+ev.venue+", "+ev.area); loc.style.fontWeight="600"; c.append(loc);
+    const br=el("div","btnrow");
+    if(/TB[AC]/.test(ev.venue)){ br.append(el("span","tag","📍 Venue to be announced")); }
+    else { const a=el("a","btn pri","Directions"); a.href=mapsURL(ev); a.target="_blank"; a.rel="noopener"; br.append(a); }
+    if(ev.id==="welcome"){ const wd=el("button","btn sec","🍹 Welcome Night details"); wd.onclick=()=>location.hash="welcome"; br.append(wd); }
+    else if(ev.id==="party"){ const pd=el("button","btn sec","🪩 Party details"); pd.onclick=()=>location.hash="studio"; br.append(pd); }
+    else if(ev.id==="beach"){ const bd=el("button","btn sec","🏖️ Beach club details"); bd.onclick=()=>location.hash="sundays"; br.append(bd); }
+    else { const m=el("button","btn sec","Map"); m.onclick=()=>location.hash="map"; br.append(m); }
+    c.append(br); w.append(c); box.append(w);
+  });
+
+  const vb=$("#venues");
+  EVENT.events.forEach((ev,i)=>{
+    const c=el("div","card"); const v=el("div","venue");
+    v.append(el("div","num",String(i+1)));
+    const t=el("div"); t.append(el("h3",null,ev.title)); t.append(el("p",null,ev.venue+" · "+ev.area+" · "+ev.when)); if(ev.address){ const ad=el("p",null,ev.address); ad.style.fontSize="13px"; t.append(ad); }
+    const br=el("div","btnrow");
+    if(/TB[AC]/.test(ev.venue)){ br.append(el("span","tag","Details coming soon")); }
+    else { const a=el("a","btn pri","Open in Google Maps"); a.href=mapsURL(ev); a.target="_blank"; a.rel="noopener"; br.append(a); }
+    t.append(br); v.append(t); c.append(v); vb.append(c);
+  });
+
+  const dl=$("#dress-list");
+  EVENT.events.forEach(ev=>{const li=el("li"); li.append(el("b",null,ev.title+": ")); li.append(document.createTextNode(ev.dress)); dl.append(li);});
+})();
+
+/* ---------- RSVP form UI ---------- */
+const form={att:"",events:new Set(),diet:new Set()};
+document.querySelectorAll("#r-att button").forEach(b=>b.onclick=()=>{form.att=b.dataset.v; syncAtt();});
+function syncAtt(){
+  document.querySelectorAll("#r-att button").forEach(b=>b.classList.toggle("on",b.dataset.v===form.att));
+  $("#r-more").classList.toggle("hidden",form.att==="no");
+}
+EVENT.events.forEach(ev=>{
+  const c=el("button","chip",ev.emoji+" "+ev.title); c.type="button"; c.dataset.id=ev.id;
+  c.onclick=()=>{form.events.has(ev.id)?form.events.delete(ev.id):form.events.add(ev.id); c.classList.toggle("on");};
+  $("#r-events").append(c);
+});
+DIETS.forEach(d=>{
+  const c=el("button","chip",d); c.type="button"; c.dataset.id=d;
+  c.onclick=()=>{form.diet.has(d)?form.diet.delete(d):form.diet.add(d); c.classList.toggle("on");};
+  $("#r-diet").append(c);
+});
+function readForm(){
+  return { name:$("#r-name").value.trim(), attending:form.att, events:[...form.events],
+    diet:[...form.diet], dietNotes:$("#r-dnotes").value.trim(), arrival:$("#r-arrive").value, stay:$("#r-stay").value.trim(),
+    message:$("#r-msg").value.trim() };
+}
+function fillForm(d){
+  $("#r-name").value=d.name||""; form.att=d.attending||""; form.events=new Set(d.events||[]); form.diet=new Set(d.diet||[]);
+  $("#r-dnotes").value=d.dietNotes||""; $("#r-arrive").value=d.arrival||"";
+  $("#r-stay").value=d.stay||""; $("#r-msg").value=d.message||"";
+  document.querySelectorAll("#r-events .chip").forEach(c=>c.classList.toggle("on",form.events.has(c.dataset.id)));
+  document.querySelectorAll("#r-diet .chip").forEach(c=>c.classList.toggle("on",form.diet.has(c.dataset.id)));
+  syncAtt();
+}
+function rsvpText(d){
+  const evn=d.events.map(id=>(EVENT.events.find(e=>e.id===id)||{}).title).filter(Boolean);
+  return ["RSVP – Pete's 50th in Bali","Name: "+d.name,"Attending: "+(d.attending||"?"),
+    evn.length?"Events: "+evn.join(", "):"",
+    d.diet.length?"Dietary: "+d.diet.join(", "):"", d.dietNotes?"Notes: "+d.dietNotes:"",
+    d.arrival?"Arriving: "+d.arrival:"", d.stay?"Staying: "+d.stay:"", d.message?"Message: "+d.message:""
+  ].filter(Boolean).join("\n");
+}
+function setStatus(id,msg,kind){const s=$(id); s.textContent=msg; s.className="status"+(kind?" "+kind:"");}
+$("#r-copy").onclick=async()=>{
+  const d=readForm(); if(!d.name){setStatus("#r-status","Please add your name first.","err");return;}
+  try{await navigator.clipboard.writeText(rsvpText(d)); toast("Copied. Paste it into a message to Pete");}
+  catch{setStatus("#r-status","Couldn't copy automatically. Please screenshot this form and send it to Pete.","err");}
+};
+
+/* ---------- capabilities ---------- */
+let DB=null, USER=null, ASSETS=null, UID=null, IS_OWNER=false, CAN_WRITE=null;
+let rsvpReadOnly=false, photoReadOnly=false;
+let MYDOC={};
+const ACTS=[["golf","⛳","Golf","A round at one of Bali's courses"],["shopping","🛍️","Shopping","Boutiques & markets"],["tour","🛕","Tour","Temples, rice terraces & sights"],["beach","🏖️","Beach time","Sun, sand & a cold Bintang"],["waterbom","🌊","Waterbom Park","Slides & lazy river in Kuta"],["other","✨","Other","Tell us your idea"]];
+const ACT_LABEL=Object.fromEntries(ACTS.map(a=>[a[0],a[1]+" "+a[2]]));
+const satSel=new Set();
+ACTS.forEach(([id,ic,label,sub])=>{
+  const b=el("button","act"); b.type="button"; b.dataset.id=id;
+  b.append(el("span","ai",ic), el("span",null,label), el("small",null,sub));
+  b.onclick=()=>{ satSel.has(id)?satSel.delete(id):satSel.add(id); syncSat(); };
+  $("#sat-acts").append(b);
+});
+function syncSat(){
+  document.querySelectorAll("#sat-acts .act").forEach(b=>b.classList.toggle("on",satSel.has(b.dataset.id)));
+  $("#sat-other-wrap").classList.toggle("hidden",!satSel.has("other"));
+}
+function fillSat(d){
+  satSel.clear(); (d.activities||[]).forEach(a=>satSel.add(a)); $("#sat-other").value=d.activityOther||"";
+  if(d.name && !$("#sat-name").value) $("#sat-name").value=d.name; syncSat();
+}
+function satText(){
+  const n=$("#sat-name").value.trim();
+  const acts=[...satSel].map(a=>a==="other"?("✨ Other: "+($("#sat-other").value.trim()||"(not specified)")):ACT_LABEL[a]);
+  return "Saturday day – Pete's 50th\nName: "+n+"\nUp for: "+(acts.join(", ")||"Nothing in particular");
+}
+function waURL(text){ return "https://wa.me/"+(WHATSAPP_NUMBER||"")+"?text="+encodeURIComponent(text); }
+let STATIC=false;
+$("#r-wa").addEventListener("click",e=>{
+  const d=readForm();
+  if(!d.name||!d.attending){ e.preventDefault(); setStatus("#r-status",!d.name?"Please add your name first.":"Let us know if you can make it.","err"); return; }
+  e.currentTarget.href=waURL(rsvpText(d)); e.currentTarget.target="_blank"; e.currentTarget.rel="noopener";
+  setStatus("#r-status","Opening WhatsApp… just tap send! 🌺","ok");
+});
+$("#sat-wa").addEventListener("click",e=>{
+  if(!$("#sat-name").value.trim()){ e.preventDefault(); setStatus("#sat-status","Please add your name first.","err"); return; }
+  if(!satSel.size){ e.preventDefault(); setStatus("#sat-status","Pick at least one option.","err"); return; }
+  e.currentTarget.href=waURL(satText()); e.currentTarget.target="_blank"; e.currentTarget.rel="noopener";
+  setStatus("#sat-status","Opening WhatsApp… just tap send! 🌴","ok");
+});
+function goStatic(){
+  STATIC=true;
+  $("#rsvp-noaccess").innerHTML="Fill in your RSVP, then tap <b>Send RSVP via WhatsApp</b>. WhatsApp opens with your answers ready to send to Pete.";
+  $("#sat-noaccess").innerHTML="Pick your favourites, then tap <b>Send via WhatsApp</b> to let Pete know.";
+  $("#r-wa").classList.remove("hidden"); $("#sat-wa").classList.remove("hidden");
+  $("#p-upl").classList.add("hidden"); $("#p-noaccess").classList.add("hidden");
+  $("#p-grid").classList.add("hidden"); $("#p-empty").classList.add("hidden"); $("#p-static").classList.remove("hidden");
+  if(PHOTO_LINK){ const b=$("#p-static-btn"); b.href=PHOTO_LINK; b.textContent=PHOTO_LINK_LABEL; b.classList.remove("hidden");
+    $("#p-static-text").textContent="Add your shots to our shared album so everyone can relive the weekend."; }
+  $("#q-photos").textContent="Share your shots";
+}
+function noSatAccess(){ $("#sat-noaccess").classList.remove("hidden"); $("#sat-save").classList.add("hidden"); $("#sat-copy").classList.remove("hidden"); }
+$("#sat-copy").onclick=async()=>{
+  if(!$("#sat-name").value.trim()){ setStatus("#sat-status","Please add your name first.","err"); return; }
+  try{ await navigator.clipboard.writeText(satText()); toast("Copied. Paste it into a message to Pete"); }
+  catch{ setStatus("#sat-status","Couldn't copy automatically. Please screenshot this and send it to Pete.","err"); }
+};
+$("#sat-form").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const name=$("#sat-name").value.trim();
+  if(!satSel.size){ setStatus("#sat-status","Pick at least one option.","err"); return; }
+  if(!name){ setStatus("#sat-status","Please add your name.","err"); return; }
+  if(!DB||!UID){ noSatAccess(); setStatus("#sat-status","Saving isn't available here. Use Copy my choices instead.","err"); return; }
+  const btn=$("#sat-save"); btn.disabled=true; setStatus("#sat-status","Sending…");
+  try{
+    try{ const cur=await DB.doc("rsvps/"+UID).get(); if(cur.exists) MYDOC={...cur.data()}; }catch{}
+    const next={...MYDOC, name:MYDOC.name||name, activities:[...satSel], activityOther:satSel.has("other")?$("#sat-other").value.trim():"", uid:UID, updatedAt:Date.now()};
+    await DB.doc("rsvps/"+UID).set(next); MYDOC=next;
+    setStatus("#sat-status","Got it, thanks! We'll let you know if a group activity comes together 🌴","ok");
+    btn.textContent="Update my choices";
+  }catch(err){
+    if(err&&err.code==="invalid_argument"){ noSatAccess(); setStatus("#sat-status","Your choices couldn't be saved from this link. Copy them and message Pete instead.","err"); }
+    else setStatus("#sat-status","Couldn't send just now. Please try again in a moment.","err");
+  }finally{ btn.disabled=false; }
+});
+
+function noRsvpAccess(){
+  noSatAccess(); rsvpReadOnly=true; $("#rsvp-noaccess").classList.remove("hidden");
+  $("#r-save").classList.add("hidden"); $("#r-copy").classList.remove("hidden");
+}
+function noPhotoAccess(){ photoReadOnly=true; $("#p-upl").classList.add("hidden"); $("#p-noaccess").classList.remove("hidden"); }
+
+$("#rsvp-form").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const d=readForm();
+  if(!d.name){setStatus("#r-status","Please add your name.","err");return;}
+  if(!d.attending){setStatus("#r-status","Let us know if you can make it.","err");return;}
+  if(!DB||!UID){ noRsvpAccess(); setStatus("#r-status","Saving isn't available here. Use Copy my RSVP instead.","err"); return; }
+  const btn=$("#r-save"); btn.disabled=true; setStatus("#r-status","Sending…");
+  try{
+    const next={...MYDOC, ...d, uid:UID, updatedAt:Date.now()};
+    await DB.doc("rsvps/"+UID).set(next); MYDOC=next;
+    setStatus("#r-status", d.attending==="no"?"Thanks for letting us know. You'll be missed! 💛":"You're on the list! Terima kasih 🌺","ok");
+    btn.textContent="Update RSVP"; $("#cta-rsvp").textContent="✓ RSVP sent: tap to update";
+  }catch(err){
+    if(err&&err.code==="invalid_argument"){ noRsvpAccess(); setStatus("#r-status","Your RSVP couldn't be saved from this link. Copy it and message Pete instead.","err"); }
+    else setStatus("#r-status","Couldn't send just now. Please try again in a moment.","err");
+  }finally{ btn.disabled=false; }
+});
+
+/* ---------- photos ---------- */
+let photos=[]; const profileCache={};
+async function names(ids){
+  if(!USER||!USER.profiles) return {};
+  try{ const ps=await USER.profiles(ids); return ps||{}; }catch{ return {}; }
+}
+function srcFor(p, full){ return (full&&p.assetId)?"/_blob/"+p.assetId:(p.thumb||(p.assetId?"/_blob/"+p.assetId:"")); }
+function renderPhotos(){
+  const g=$("#p-grid"); g.innerHTML="";
+  $("#p-empty").classList.toggle("hidden",photos.length>0);
+  $("#p-count").textContent=photos.length?photos.length+" photo"+(photos.length>1?"s":""):"";
+  $("#q-photos").textContent=photos.length?photos.length+" shared so far":"Share your shots";
+  photos.forEach(p=>{
+    const b=el("button"); const i=el("img"); i.loading="lazy"; i.alt="Party photo"; i.src=srcFor(p,false);
+    b.append(i); b.onclick=()=>openLB(p); g.append(b);
+  });
+}
+async function openLB(p){
+  $("#lb-img").src=srcFor(p,true);
+  const cap=$("#lb-cap"); cap.textContent="";
+  const ps=await names([p.uid]); const who=(ps[p.uid]&&ps[p.uid].name)||p.byName||"A guest";
+  cap.append(document.createTextNode(p.caption||""));
+  const sm=el("small",null,"📸 "+who+" · "+new Date(p.ts).toLocaleString([], {weekday:"short",hour:"numeric",minute:"2-digit"})); cap.append(sm);
+  const del=$("#lb-del"); del.classList.toggle("hidden",!(IS_OWNER||p.uid===UID));
+  del.onclick=async()=>{
+    del.disabled=true;
+    try{ await DB.doc("photos/"+p.id).delete(); if(p.assetId&&ASSETS&&p.uid===UID){ try{await ASSETS.delete(p.assetId);}catch{} } closeLB(); toast("Photo removed"); }
+    catch{ toast("Couldn't delete that one"); }
+    finally{ del.disabled=false; }
+  };
+  $("#lb").classList.remove("hidden");
+}
+function closeLB(){ $("#lb").classList.add("hidden"); $("#lb-img").src=""; }
+$("#lb-x").onclick=closeLB; $("#lb").addEventListener("click",e=>{ if(e.target.id==="lb") closeLB(); });
+
+function loadImg(file){ return new Promise((res,rej)=>{ const u=URL.createObjectURL(file); const i=new Image(); i.onload=()=>{res(i);}; i.onerror=rej; i.src=u; }); }
+function scaleTo(img,max,q){
+  const r=Math.min(1,max/Math.max(img.naturalWidth,img.naturalHeight));
+  const c=document.createElement("canvas"); c.width=Math.round(img.naturalWidth*r); c.height=Math.round(img.naturalHeight*r);
+  c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+  return { dataUrl:()=>c.toDataURL("image/jpeg",q), blob:()=>new Promise(r2=>c.toBlob(r2,"image/jpeg",q)) };
+}
+$("#p-file").addEventListener("change",async e=>{
+  const files=[...e.target.files]; e.target.value="";
+  if(!files.length) return;
+  if(!DB||!UID){ noPhotoAccess(); return; }
+  let me=null; try{ me=USER&&USER.me?await USER.me():null; }catch{}
+  let done=0;
+  for(const f of files){
+    setStatus("#p-status","Uploading "+(done+1)+" of "+files.length+"…");
+    try{
+      const img=await loadImg(f);
+      const thumb=scaleTo(img,420,.72).dataUrl();
+      let assetId=null;
+      if(ASSETS){ try{ const blob=await scaleTo(img,1600,.85).blob(); const r=await ASSETS.upload(blob); assetId=r.id; }catch{} }
+      await DB.collection("photos").add({ uid:UID, byName:(me&&me.name)||"", thumb, assetId, caption:"", ts:Date.now() });
+      done++;
+    }catch(err){
+      if(err&&err.code==="invalid_argument"){ noPhotoAccess(); setStatus("#p-status","",""); return; }
+      if(err&&err.code==="quota_exceeded"){ setStatus("#p-status","The gallery is full. Let Pete know.","err"); return; }
+    }
+  }
+  setStatus("#p-status", done?("Added "+done+" photo"+(done>1?"s":"")+" 🎉"):"Couldn't add that photo. Try a different one.", done?"ok":"err");
+});
+
+/* ---------- owner dashboard ---------- */
+async function renderOwner(docs){
+  const rows=docs.map(d=>d.data()).filter(Boolean).sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0));
+  const cnt={yes:0,maybe:0,no:0}; const evc={}; const dietc={}; const notes=[]; const actc={}; const others=[];
+  rows.forEach(r=>{
+    const heads=1;
+    if(cnt[r.attending]!=null) cnt[r.attending]+=(r.attending==="no"?1:heads);
+    (r.activities||[]).forEach(a=>actc[a]=(actc[a]||0)+1); if(r.activityOther) others.push(r.name+": "+r.activityOther);
+    if(r.attending!=="no"){ (r.events||[]).forEach(id=>evc[id]=(evc[id]||0)+heads); (r.diet||[]).forEach(d=>dietc[d]=(dietc[d]||0)+1); if(r.dietNotes) notes.push(r.name+": "+r.dietNotes); }
+  });
+  $("#s-yes").textContent=cnt.yes; $("#s-maybe").textContent=cnt.maybe; $("#s-no").textContent=cnt.no;
+  const se=$("#s-events"); se.textContent="";
+  EVENT.events.forEach(ev=>{ const d=el("div",null,ev.emoji+" "+ev.title+": "+(evc[ev.id]||0)+" guests"); se.append(d); });
+  const sd=$("#s-diet"); sd.textContent="";
+  const dk=Object.keys(dietc); if(!dk.length&&!notes.length) sd.append(el("div",null,"None so far"));
+  dk.forEach(k=>sd.append(el("div",null,k+" × "+dietc[k])));
+  notes.forEach(n=>{ const d=el("div",null,"⚠️ "+n); d.style.color="#a2412a"; sd.append(d); });
+  const sa=$("#s-acts"); sa.textContent="";
+  const ak=ACTS.filter(a=>actc[a[0]]); if(!ak.length) sa.append(el("div",null,"No picks yet"));
+  ak.sort((x,y)=>actc[y[0]]-actc[x[0]]).forEach(a=>sa.append(el("div",null,a[1]+" "+a[2]+" × "+actc[a[0]])));
+  others.forEach(o=>sa.append(el("div",null,"✨ "+o)));
+  const ul=$("#r-list"); ul.textContent="";
+  if(!rows.length){ ul.append(el("li",null,"No RSVPs yet. Share the link with your guests.")); }
+  rows.forEach(r=>{
+    const li=el("li"); const b=el("b",null,r.name); li.append(b);
+    li.append(el("span","pill "+(r.attending||"maybe"),r.attending||"?"));
+    const meta=[ (r.diet||[]).join(", "), r.arrival?"lands "+r.arrival:"", r.stay ].filter(Boolean).join(" · ");
+    if(meta) li.append(el("div","meta",meta));
+    if((r.activities||[]).length) li.append(el("div","meta","🌴 Sat: "+r.activities.map(a=>a==="other"?("Other"+(r.activityOther?" ("+r.activityOther+")":"")):(ACT_LABEL[a]||a)).join(", ")));
+    if(r.message) li.append(el("div","meta","💬 "+r.message));
+    ul.append(li);
+  });
+  $("#copy-csv").onclick=async()=>{
+    const esc=v=>'"'+String(v??"").replace(/"/g,'""')+'"';
+    const head=["Name","Attending","Events","Dietary","Diet notes","Arrival","Staying","Saturday activities","Message"];
+    const lines=[head.join(",")].concat(rows.map(r=>[r.name,r.attending,(r.events||[]).join("; "),(r.diet||[]).join("; "),r.dietNotes,r.arrival,r.stay,(r.activities||[]).map(a=>a==="other"?("Other: "+(r.activityOther||"")):(ACT_LABEL[a]||a).replace(/^\S+ /,"")).join("; "),r.message].map(esc).join(",")));
+    try{ await navigator.clipboard.writeText(lines.join("\n")); toast("Guest list copied. Paste into a spreadsheet"); }catch{ toast("Couldn't copy"); }
+  };
+}
+
+/* ---------- boot ---------- */
+(async function boot(){
+  route();
+  const use = window.claude && window.claude.use ? window.claude.use.bind(window.claude) : null;
+  if(!use){ noRsvpAccess(); noPhotoAccess(); goStatic(); return; }
+  [DB,USER,ASSETS]=await Promise.all([use("db").catch(()=>null),use("user").catch(()=>null),use("assets").catch(()=>null)]);
+  if(USER){
+    try{ UID=await USER.id(); }catch{}
+    try{ IS_OWNER=!!(await USER.isOwner()); }catch{}
+    try{ const ce=await USER.canEdit(); CAN_WRITE = IS_OWNER||ce; if(ce===null&&!IS_OWNER) CAN_WRITE=null; }catch{}
+  }
+  if(!DB||!UID){ noRsvpAccess(); noPhotoAccess(); $("#p-empty").textContent="Sign in to Claude to see the live photo wall."; return; }
+  if(CAN_WRITE===false){ noRsvpAccess(); noPhotoAccess(); }
+
+  // prefill own RSVP
+  if(!rsvpReadOnly){
+    try{ const s=await DB.doc("rsvps/"+UID).get(); if(s.exists){ MYDOC={...s.data()}; fillSat(MYDOC); if(MYDOC.attending) $("#sat-save").textContent="Update my choices"; }
+      if(s.exists && s.data().attending){ fillForm(s.data()); $("#r-save").textContent="Update RSVP"; $("#cta-rsvp").textContent="✓ RSVP sent: tap to update"; } }catch{}
+    try{ const me=USER.me?await USER.me():null; if(me&&me.name){ if(!$("#r-name").value) $("#r-name").value=me.name; if(!$("#sat-name").value) $("#sat-name").value=me.name; } }catch{}
+  }
+
+  // live photos
+  const loadTimer=setTimeout(()=>{ if(!photos.length) $("#p-empty").textContent="The photo wall can't be reached yet. Check your connection."; },10000);
+  DB.collection("photos").orderBy("ts","desc").limit(500).onSnapshot(snap=>{
+    if(!snap.metadata.fromCache) clearTimeout(loadTimer);
+    photos=snap.docs.map(d=>({id:d.id,...d.data()})); renderPhotos();
+  },()=>{ clearTimeout(loadTimer); $("#p-empty").textContent="The photo wall isn't available right now."; });
+
+  // owner dashboard
+  if(IS_OWNER){
+    $("#owner-panel").classList.remove("hidden");
+    DB.collection("rsvps").onSnapshot(snap=>renderOwner(snap.docs),()=>{});
+  }
+})();
+</script>
+</body>
+</html>
